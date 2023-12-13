@@ -1,12 +1,8 @@
 package q1.assignment;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Project implements Serializable {
-	Employee e;
 
 	String projectCode;
 	String projectName;
@@ -16,10 +12,6 @@ public class Project implements Serializable {
 		this.projectCode = projectCode;
 		this.projectName = projectName;
 		this.projectStrength = projectStrength;
-	}
-
-	public Project(Employee e) {
-		this.e = e;
 	}
 
 	public String getProjectCode() {
@@ -45,32 +37,11 @@ public class Project implements Serializable {
 	public void setProjectStrength(int projectStrength) {
 		this.projectStrength = projectStrength;
 	}
-	
 
 	@Override
 	public String toString() {
 		return "Project [projectCode=" + projectCode + ", projectName=" + projectName + ", projectStrength="
 				+ projectStrength + "]";
 	}
-
-
-	ArrayList<Employee> elist1 = new ArrayList<Employee>();
-	ArrayList<Employee> elist2 = new ArrayList<Employee>();
-	ArrayList<Employee> elist3 = new ArrayList<Employee>();
-	
-	
-	Map<Project, ArrayList<Employee>> map1 = new HashMap<>();
-
-	public void serializeProjectDetails(Map<Project, ArrayList<Employee>> map12) {
-		System.out.println("Serialized map of project Successfully...");
-	}
-	
-	public void printData() {
-		//Project obj = new Project(e);
-//		for (Employee employee : elist2) {
-			System.out.println("\tDeSerialization Data :\n"+"The Project\n"+toString() + "\n");
-//		}
-	}
-	
-	
+		
 }
