@@ -4,12 +4,11 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
 public class Project_Serializer {
-	static Employee e;
 
 	public static void main(String[] args) {
 		
 		
-		Project projectSerializer = new Project(e) ;
+		Project_Serializer projectSerializer = new Project_Serializer();
 
 		Project project1 = new Project("P1","Music Synthesizer",23);
 		Project project2 = new Project("P2","Vehicle Movement Tracker",13);
@@ -43,17 +42,30 @@ public class Project_Serializer {
 		projectSerializer.map1.put(project1, projectSerializer.elist1);
 		projectSerializer.map1.put(project2, projectSerializer.elist2);
 		projectSerializer.map1.put(project3, projectSerializer.elist3);
-		projectSerializer.serializeProjectDetails(projectSerializer.map1);
 		
 		try {
 			FileOutputStream file = new FileOutputStream("D:\\Jagadishwar\\Emp-project.ser");
 
 			ObjectOutputStream obj = new ObjectOutputStream(file);
 			
-			obj.writeObject(projectSerializer);
+			obj.writeObject(projectSerializer.map1);
+			System.out.println("Serialized map of project successfully...");
+			obj.close();
+			file.close()
 		} catch (Exception excp) {
-			// TODO: handle exception
+			excp.printStackTrace();
 		}
 	}
 
+	public Map<Project, ArrayList<Employee>> map1;
+	public ArrayList<Employee> elist1;
+	public ArrayList<Employee> elist2;
+	public ArrayList<Employee> elist3;
+
+	public Project_Serializer(){
+		map1 = new HashMap<Project, ArrayList<Employee>>();
+		elist1 = new ArrayList<Employee>();
+		elist2 = new ArrayList<Employee>();
+		elist3 = new ArrayList<Employee>();
+	}
 }
