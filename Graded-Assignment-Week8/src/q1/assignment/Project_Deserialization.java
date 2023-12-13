@@ -6,19 +6,32 @@ import java.io.ObjectInputStream;
 
 public class Project_Deserialization {
 
-	static Employee e;
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 
 			try {
 
 				FileInputStream fis = new FileInputStream("D:\\Jagadishwar\\Emp-project.ser");
 				ObjectInputStream ois = new ObjectInputStream(fis);
+				Map<Project, ArrayList<Employee>> deserializedMap = (Map<Project, ArrayList<Employee>>) ois.readObject();
+				ois.close();
+				fis.close();
 
-				Project obj = (Project) ois.readObject();
-				obj.printData();
+				for (Map.Entry<Project, ArrayList<Employee>> entry : deserializedMap.entrySet()) {
+					System.out.println(entry.getKey());
+					for (Employee employee : entry.getValue()) {
+						System.out.println(employee);
 
-			} catch (Exception excp) {
-				System.out.println(excp.getMessage());
+					}
+					System.out.println();
+				}
+
+			} catch (IOException excp) {
+				excp.printStackTrace();
+				return;
+			} catch (ClassNotFoundException cnfe) {
+				System.out.println("Employee class not found");
+				cnfe.printStackTrace();
+				return;
 			}
 	}
 
